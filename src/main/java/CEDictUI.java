@@ -2,13 +2,14 @@
  * 
  */
 
+
 import java.util.Scanner;
 
 /**
  * A simple text-based user interface for looking up from CC-CEDICT.
  * 
  * @author S H S Wong
- * @version 05/05/2017
+ * @version 11/06/2017
  */
 public class CEDictUI {
 
@@ -84,7 +85,7 @@ public class CEDictUI {
 	
 	/**
 	 * Returns a string representation of a brief title for this application as the header.
-	 * @return	a header
+	 * @return	a header string
 	 */
 	private String header() {
 		return "\nCC-CEDICT - Chinese-English dictionary. \n";
@@ -92,7 +93,7 @@ public class CEDictUI {
 	
 	/**
 	 * Returns a string representation of the user menu.
-	 * @return	the user menu
+	 * @return	the user menu as a string
 	 */
 	private String menu() {
 		return "To lookup a Chinese word: Type the Chinese word (in traditional or simplified character(s))\n" +

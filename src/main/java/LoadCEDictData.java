@@ -23,7 +23,7 @@ public class LoadCEDictData {
     /**
      *
      * @param fileLocation - where the dictionary data file is located
-     * @throws IOException
+     * @throws IOException - gets file which may throw file not find and also reads file
      */
     LoadCEDictData(String fileLocation) throws IOException {
         File cedictFile = new File(this.getClass().getClassLoader().getResource(fileLocation).getFile());
@@ -60,7 +60,7 @@ public class LoadCEDictData {
                 String englishValue = english[i];
                 String englishValueLower = englishValue.toLowerCase();
                 this.english.add(englishValue);
-                englishTranslations.append(englishValue + ", ");
+                englishTranslations.append(englishValue).append(", ");
 
                 //checks if value has already been added and amends it
                 if(englishToChinese.containsKey(englishValueLower)){
@@ -84,19 +84,19 @@ public class LoadCEDictData {
 
     /**
      *
-     * @param english
-     * @param tranlations
-     * @param currentValue
+     * @param english - the english meanings
+     * @param translations - chinese translations
+     * @param currentValue - current value for key
      */
-    protected void addEnglishToChineseTranslation(String english,String[] tranlations, HashSet<String> currentValue){
-        currentValue.add(tranlations[0]);
-        currentValue.add(tranlations[1]);
+    private void addEnglishToChineseTranslation(String english,String[] translations, HashSet<String> currentValue){
+        currentValue.add(translations[0]);
+        currentValue.add(translations[1]);
         englishToChinese.put(english,currentValue);
     }
 
     /**
      * returns all traditional chinese charaters in CEDict file
-     * @return
+     * @return - HashSet of all Chinese traditional words in file
      */
     public HashSet<String> getTraditionalChinese() {
         return traditionalChinese;
@@ -104,7 +104,7 @@ public class LoadCEDictData {
 
     /**
      * returns all simplified chinese charaters in CEDict file
-     * @return
+     * @return - HashSet of all Chinese simplified words in file
      */
     public HashSet<String> getSimplifiedChinese() {
         return simplifiedChinese;
@@ -112,7 +112,7 @@ public class LoadCEDictData {
 
     /**
      *returns all pinyin transliterations in CEDict file
-     * @return
+     * @return - HashSet of all pinyin transliterations in file
      */
     public HashSet<String> getPinYin() {
         return pinYin;
@@ -120,7 +120,7 @@ public class LoadCEDictData {
 
     /**
      *returns all english meanings in CEDict file
-     * @return
+     * @return - HashSet of all english translations in file
      */
     public HashSet<String> getEnglish() {
         return english;
@@ -128,7 +128,7 @@ public class LoadCEDictData {
 
     /**
      *
-     * @return
+     * @return - HashMap Key pinyin Value both traditional and simplified transliterations
      */
     public HashMap<String, String> getPinYinToChinese() {
         return pinYinToChinese;
@@ -136,7 +136,7 @@ public class LoadCEDictData {
 
     /**
      *
-     * @return
+     * @return - HashMap Key traditional or simplified meanings Value english meanings
      */
     public HashMap<String, String> getChineseToEnglish() {
         return chineseToEnglish;
@@ -144,7 +144,7 @@ public class LoadCEDictData {
 
     /**
      *
-     * @return
+     * @return - HashMap Key english meanings Value both traditional and simplified meanings
      */
     public HashMap<String, HashSet<String>> getEnglishToChinese() {
         return englishToChinese;

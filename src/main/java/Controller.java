@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -56,10 +58,21 @@ public class Controller implements CEDictController{
 
     @Override
     public String lookupEnglish(String English) {
-        if (ceDictData.getEnglishToChinese().get(English.toLowerCase()) == null){
+        HashMap<String,HashSet<String>> englishToChinese = ceDictData.getEnglishToChinese();
+        StringBuilder translations = new StringBuilder();
+
+        //ignores brackets and returns all translations matching
+        for(String key : englishToChinese.keySet()){
+            String cleanKey = key.replaceAll("\\(.*?\\)","").trim();
+            if (English.equalsIgnoreCase(cleanKey)){
+                translations.append(key).append(": ").append(englishToChinese.get(key)).append("\n");
+            }
+        }
+
+        if (translations.length() == 0){
             return "No translation found for " + English;
         }
-        return (ceDictData.getEnglishToChinese().get(English.toLowerCase())).toString();
+        return translations.toString();
     }
 
     @Override

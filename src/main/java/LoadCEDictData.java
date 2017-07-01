@@ -58,6 +58,11 @@ public class LoadCEDictData {
 
             for (int i=1;i < numEnglishMeanings;i++){
                 String englishValue = english[i];
+//                System.out.println(englishValue);
+//                //remove brackets from englich meanings so that they are searchable
+//                if (englishValue.contains("(")){
+//                    englishValue  = englishValue.substring(0,(englishValue.indexOf('(') - 1));
+//                }
                 String englishValueLower = englishValue.toLowerCase();
                 this.english.add(englishValue);
                 englishTranslations.append(englishValue + ", ");
@@ -70,11 +75,11 @@ public class LoadCEDictData {
                     addEnglishToChineseTranslation(englishValueLower,chinese,new HashSet<>());
                 }
             }
-            String chineseEnglishtranslations = englishTranslations.substring(0,(englishTranslations.length() - 2));
+            String chineseEnglishTranslations = englishTranslations.substring(0,(englishTranslations.length() - 2));
 
             pinYinToChinese.put(pinYinTransliteration,chineseTranslations);
-            chineseToEnglish.put(chinese[0],chineseEnglishtranslations);
-            chineseToEnglish.put(chinese[1],chineseEnglishtranslations);
+            chineseToEnglish.put(chinese[0],chineseEnglishTranslations);
+            chineseToEnglish.put(chinese[1],chineseEnglishTranslations);
 
 
 

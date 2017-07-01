@@ -28,9 +28,11 @@ public class LoadCEDictData {
 
         BufferedReader reader = new BufferedReader(new FileReader(cedictFile));
         while ((line = reader.readLine()) != null){
+            //ignores commented lines
             if(line.startsWith("#")){
                 continue;
             }
+
             //splits the line by spaces to extract chinese characters
             String[] chinese = line.split("\\s");
 
@@ -76,6 +78,13 @@ public class LoadCEDictData {
         }
     }
 
+
+    /**
+     *
+     * @param english
+     * @param tranlations
+     * @param currentValue
+     */
     protected void addEnglishToChineseTranslation(String english,String[] tranlations, HashSet<String> currentValue){
         currentValue.add(tranlations[0]);
         currentValue.add(tranlations[1]);

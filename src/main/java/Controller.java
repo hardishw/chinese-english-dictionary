@@ -47,16 +47,25 @@ public class Controller implements CEDictController{
 
     @Override
     public String lookupChinese(String chineseWord) {
+        if (ceDictData.getChineseToEnglish().get(chineseWord) == null){
+            return "No translation found for " + chineseWord;
+        }
         return ceDictData.getChineseToEnglish().get(chineseWord);
     }
 
     @Override
     public String lookupEnglish(String English) {
+        if (ceDictData.getEnglishToChinese().get(English.toLowerCase()) == null){
+            return "No translation found for " + English;
+        }
         return (ceDictData.getEnglishToChinese().get(English.toLowerCase())).toString();
     }
 
     @Override
     public String lookupPinyin(String pinyin) {
+        if (ceDictData.getPinYinToChinese().get(pinyin.toLowerCase()) == null){
+            return "No transliteration found for " + pinyin;
+        }
         return ceDictData.getPinYinToChinese().get(pinyin.toLowerCase());
     }
 
@@ -65,15 +74,17 @@ public class Controller implements CEDictController{
         StringBuilder wordsWithPrefix = new StringBuilder();
         Iterator<String> traditionalChineseWords = ceDictData.getTraditionalChinese().iterator();
 
-        if(ceDictData.getTraditionalChinese().contains(chinesePrefix)){
-            wordsWithPrefix.append(chinesePrefix + ": ");
-        }
+        wordsWithPrefix.append(chinesePrefix + ": ");
 
         while (traditionalChineseWords.hasNext()){
             String chineseWord = traditionalChineseWords.next();
             if(chineseWord.startsWith(chinesePrefix)){
                 wordsWithPrefix.append(chineseWord + ", ");
             }
+        }
+
+        if (wordsWithPrefix.toString().equals(chinesePrefix + ": ")){
+            return "Found no words with prefix " + chinesePrefix;
         }
 
         return wordsWithPrefix.substring(0,(wordsWithPrefix.length() - 2)).toString();

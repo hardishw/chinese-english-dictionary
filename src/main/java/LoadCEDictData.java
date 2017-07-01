@@ -7,6 +7,7 @@ import java.util.HashSet;
 
 /**
  * Created by HWILKHU on 25/06/2017.
+ *
  */
 public class LoadCEDictData {
 
@@ -21,7 +22,7 @@ public class LoadCEDictData {
 
     /**
      *
-     * @param fileLocation
+     * @param fileLocation - where the dictionary data file is located
      * @throws IOException
      */
     public LoadCEDictData(String fileLocation) throws IOException {
@@ -97,7 +98,7 @@ public class LoadCEDictData {
      * returns all traditional chinese charaters in CEDict file
      * @return
      */
-    public HashSet getTraditionalChinese() {
+    public HashSet<String> getTraditionalChinese() {
         return traditionalChinese;
     }
 
@@ -105,7 +106,7 @@ public class LoadCEDictData {
      * returns all simplified chinese charaters in CEDict file
      * @return
      */
-    public HashSet getSimplifiedChinese() {
+    public HashSet<String> getSimplifiedChinese() {
         return simplifiedChinese;
     }
 
@@ -113,7 +114,7 @@ public class LoadCEDictData {
      *returns all pinyin transliterations in CEDict file
      * @return
      */
-    public HashSet getPinYin() {
+    public HashSet<String> getPinYin() {
         return pinYin;
     }
 

@@ -3,13 +3,14 @@ import java.util.TreeSet;
 
 /**
  * Created by HWILKHU on 25/06/2017.
+ *
  */
 public class Controller implements CEDictController{
 
-    LoadCEDictData ceDictData;
+    private LoadCEDictData ceDictData;
 
 
-    public Controller(LoadCEDictData ceDictData) {
+    Controller(LoadCEDictData ceDictData) {
         this.ceDictData = ceDictData;
     }
 
@@ -17,13 +18,13 @@ public class Controller implements CEDictController{
     public String summaryStatistics() {
         StringBuilder statistics = new StringBuilder();
 
-        statistics.append("CC-CEDICT Data Statistics: \n");
-        statistics.append("Unique Traditional Chinese words: " + ceDictData.getTraditionalChinese().size() + "\n");
-        statistics.append("Unique Simplified Chinese words: " + ceDictData.getSimplifiedChinese().size() + "\n");
-        statistics.append("Unique PinYin transliterations: " + ceDictData.getPinYin().size() + "\n");
-        statistics.append("Unique English meanings: " + ceDictData.getEnglish().size() + "\n");
+        statistics.append("CC-CEDICT Data Statistics: \n")
+                .append("Unique Traditional Chinese words: ").append(ceDictData.getTraditionalChinese().size()).append("\n")
+                .append("Unique Simplified Chinese words: ").append(ceDictData.getSimplifiedChinese().size()).append("\n")
+                .append("Unique PinYin transliterations: ").append(ceDictData.getPinYin().size()).append("\n")
+                .append("Unique English meanings: ").append(ceDictData.getEnglish().size()).append("\n");
 
-        TreeSet<String> traditionalChineseWordsTree = new TreeSet<String>(ceDictData.getTraditionalChinese());
+        TreeSet<String> traditionalChineseWordsTree = new TreeSet<>(ceDictData.getTraditionalChinese());
         Iterator<String> traditionalChineseWords = ceDictData.getTraditionalChinese().iterator();
 
         int prefixes = 0;
@@ -40,7 +41,7 @@ public class Controller implements CEDictController{
             }
         }
 
-        statistics.append("Number of Traditional Chinese prefixes : " + prefixes + "\n");
+        statistics.append("Number of Traditional Chinese prefixes : ").append(prefixes).append("\n");
 
         return statistics.toString();
     }
@@ -74,12 +75,12 @@ public class Controller implements CEDictController{
         StringBuilder wordsWithPrefix = new StringBuilder();
         Iterator<String> traditionalChineseWords = ceDictData.getTraditionalChinese().iterator();
 
-        wordsWithPrefix.append(chinesePrefix + ": ");
+        wordsWithPrefix.append(chinesePrefix).append(": ");
 
         while (traditionalChineseWords.hasNext()){
             String chineseWord = traditionalChineseWords.next();
             if(chineseWord.startsWith(chinesePrefix)){
-                wordsWithPrefix.append(chineseWord + ", ");
+                wordsWithPrefix.append(chineseWord).append(", ");
             }
         }
 
@@ -87,6 +88,6 @@ public class Controller implements CEDictController{
             return "Found no words with prefix " + chinesePrefix;
         }
 
-        return wordsWithPrefix.substring(0,(wordsWithPrefix.length() - 2)).toString();
+        return wordsWithPrefix.substring(0,(wordsWithPrefix.length() - 2));
     }
 }

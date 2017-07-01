@@ -25,7 +25,7 @@ public class LoadCEDictData {
      * @param fileLocation - where the dictionary data file is located
      * @throws IOException
      */
-    public LoadCEDictData(String fileLocation) throws IOException {
+    LoadCEDictData(String fileLocation) throws IOException {
         File cedictFile = new File(this.getClass().getClassLoader().getResource(fileLocation).getFile());
         String line;
 
@@ -58,11 +58,6 @@ public class LoadCEDictData {
 
             for (int i=1;i < numEnglishMeanings;i++){
                 String englishValue = english[i];
-//                System.out.println(englishValue);
-//                //remove brackets from englich meanings so that they are searchable
-//                if (englishValue.contains("(")){
-//                    englishValue  = englishValue.substring(0,(englishValue.indexOf('(') - 1));
-//                }
                 String englishValueLower = englishValue.toLowerCase();
                 this.english.add(englishValue);
                 englishTranslations.append(englishValue + ", ");

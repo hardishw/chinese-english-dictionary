@@ -21,7 +21,7 @@ public class LoadCEDictData {
     private HashMap<String,HashSet<String>> englishToChinese = new HashMap<>();
 
     /**
-     *
+     * reads dictionary file and breaks it apart into necessary data structures for translations
      * @param fileLocation - where the dictionary data file is located
      * @throws IOException - gets file which may throw file not find and also reads file
      */
@@ -83,7 +83,7 @@ public class LoadCEDictData {
 
 
     /**
-     *
+     * appends a current translation with more values
      * @param english - the english meanings
      * @param translations - chinese translations
      * @param currentValue - current value for key

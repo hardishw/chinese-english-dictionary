@@ -12,20 +12,21 @@ import java.util.HashSet;
 public class LoadCEDictData {
 
     private HashSet<String> traditionalChinese = new HashSet<>(200000);
-    private HashSet<String> simplifiedChinese = new HashSet<>();
-    private HashSet<String> pinYin = new HashSet<>();
-    private HashSet<String> english = new HashSet<>();
+    private HashSet<String> simplifiedChinese = new HashSet<>(200000);
+    private HashSet<String> pinYin = new HashSet<>(200000);
+    private HashSet<String> english = new HashSet<>(200000);
 
-    private HashMap<String,String> pinYinToChinese = new HashMap<>();
-    private HashMap<String,String> chineseToEnglish = new HashMap<>();
-    private HashMap<String,HashSet<String>> englishToChinese = new HashMap<>();
+    private HashMap<String,String> pinYinToChinese = new HashMap<>(200000);
+    private HashMap<String,String> chineseToEnglish = new HashMap<>(200000);
+    private HashMap<String,HashSet<String>> englishToChinese = new HashMap<>(200000);
 
     /**
+     * constructor
      * reads dictionary file and breaks it apart into necessary data structures for translations
      * @param fileLocation - where the dictionary data file is located
      * @throws IOException - gets file which may throw file not find and also reads file
      */
-    LoadCEDictData(String fileLocation) throws IOException {
+    public LoadCEDictData(String fileLocation) throws IOException {
         File cedictFile = new File(this.getClass().getClassLoader().getResource(fileLocation).getFile());
         String line;
 
@@ -36,7 +37,7 @@ public class LoadCEDictData {
                 continue;
             }
 
-            //splits the line by spaces to extract chinese characters
+            //this block splits the line by spaces to extract chinese characters
             String[] chinese = line.split("\\s");
 
             traditionalChinese.add(chinese[0]);
@@ -44,14 +45,14 @@ public class LoadCEDictData {
 
             String chineseTranslations = chinese[0] + ", " + chinese[1];
 
-            //splits by [] to extract pinyin transliteration
+            //this block  splits by [] to extract pinyin transliteration
             String[] pinYin = line.split("\\[");
             pinYin = pinYin[1].split("]");
             String pinYinTransliteration = ("["+pinYin[0]+"]").toLowerCase();
 
             this.pinYin.add(pinYinTransliteration);
 
-            //counts the number of english delimiters and splits by / to extract english translations
+            //this block counts the number of english delimiters and splits by / to extract english translations
             int numEnglishMeanings = (line.length() - line.replace("/","").length());
             String[] english = line.split("/");
             StringBuilder englishTranslations = new StringBuilder();

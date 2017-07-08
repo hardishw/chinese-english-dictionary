@@ -11,8 +11,11 @@ public class Controller implements CEDictController{
 
     private LoadCEDictData ceDictData;
 
-
-    Controller(LoadCEDictData ceDictData) {
+    /**
+     * constructor
+     * @param ceDictData - LoadCEDictData class which contains the data in necessary structures
+     */
+    public Controller(LoadCEDictData ceDictData) {
         this.ceDictData = ceDictData;
     }
 

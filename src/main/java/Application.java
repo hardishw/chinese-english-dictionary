@@ -5,6 +5,11 @@ import java.io.IOException;
  */
 public class Application {
 
+    /**
+     * Main method
+     * creates the user interface
+     * @param args
+     */
     public static void main(String[] args){
         try {
             LoadCEDictData loadCEDictData = new LoadCEDictData("cedict_ts.u8");
